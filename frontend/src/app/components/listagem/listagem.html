@@ -1,0 +1,35 @@
+<div class="linha">
+  <h2>Carteirinhas</h2>
+  <a class="botao" routerLink="/nova">Nova carteirinha</a>
+</div>
+
+@if (erro()) { <p class="erro" role="alert">{{ erro() }}</p> }
+@if (aviso()) { <p role="status">{{ aviso() }}</p> }
+
+@if (carregando()) {
+  <p>Carregando carteirinhas…</p>
+} @else if (!carteirinhas().length && !erro()) {
+  <p>Nenhuma carteirinha cadastrada.</p>
+}
+
+<section class="grade" aria-label="Carteirinhas cadastradas">
+  @for (item of carteirinhas(); track item.id) {
+    <article>
+      <div class="linha">
+        <h3>{{ item.nomeAluno }}</h3>
+        <span class="status" [class.bloqueada]="item.status === 'BLOQUEADA'">{{ item.status }}</span>
+      </div>
+      <p>Matrícula {{ item.matricula }}</p>
+      <p>Saldo <strong>{{ item.saldo | currency:'BRL' }}</strong></p>
+      <label>Valor da operação
+        <input #valor type="number" min="0.01" max="9999999999.99" step="0.01" required />
+      </label>
+      <div class="acoes">
+        <button type="button" [disabled]="pendente()" (click)="operar(item.id, 'debitar', valor)">Debitar</button>
+        <button type="button" [disabled]="pendente()" (click)="operar(item.id, 'recarregar', valor)">Recarregar</button>
+        <a [routerLink]="['/editar', item.id]">Editar</a>
+        <button type="button" [disabled]="pendente()" (click)="excluir(item)">Excluir</button>
+      </div>
+    </article>
+  }
+</section>

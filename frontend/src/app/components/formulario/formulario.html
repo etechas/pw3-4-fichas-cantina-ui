@@ -1,0 +1,44 @@
+<h2>{{ id === null ? 'Nova carteirinha' : 'Editar carteirinha' }}</h2>
+@if (erro()) { <p class="erro" role="alert">{{ erro() }}</p> }
+
+@if (pronto()) {
+  <form [formGroup]="form" (ngSubmit)="salvar()">
+    <label>Nome do aluno
+      <input formControlName="nomeAluno" required maxlength="255" />
+    </label>
+    @if (form.controls.nomeAluno.touched && form.controls.nomeAluno.invalid) {
+      <small class="erro">Informe o nome do aluno.</small>
+    }
+
+    <label>Matrícula
+      <input formControlName="matricula" required maxlength="255" />
+    </label>
+    @if (form.controls.matricula.touched && form.controls.matricula.invalid) {
+      <small class="erro">Informe a matrícula.</small>
+    }
+
+    @if (id === null) {
+      <label>Saldo inicial
+        <input type="number" formControlName="saldo" min="0" max="9999999999.99" step="0.01" required />
+      </label>
+      @if (form.controls.saldo.touched && form.controls.saldo.invalid) {
+        <small class="erro">Informe um saldo de zero ou mais, com até duas casas decimais.</small>
+      }
+    }
+
+    <label>Status
+      <select formControlName="status">
+        <option value="ATIVA">Ativa</option>
+        <option value="BLOQUEADA">Bloqueada</option>
+      </select>
+    </label>
+
+    <div class="acoes">
+      <button type="submit" [disabled]="salvando()">Salvar</button>
+      <a routerLink="/">Cancelar</a>
+    </div>
+  </form>
+} @else {
+  @if (!erro()) { <p>Carregando carteirinha…</p> }
+  <a routerLink="/">Voltar</a>
+}

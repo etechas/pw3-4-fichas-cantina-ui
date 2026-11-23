@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(135deg, #000000, #4b4b4a);
+  color: #1f2937;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.1s, filter 0.2s;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-nova { background: #8b5cf6; }
+.btn-debitar { background: #f59e0b; }
+.btn-recarregar { background: #22c55e; }
+.btn-bloquear { background: #ef4444; }
+.btn-desbloquear { background: #0ea5e9; }
+.btn-editar { background: #6366f1; }
+.btn-excluir { background: #374151; }
+.btn-salvar { background: #14b8a6; }
+.btn-voltar { background: #9ca3af; }

@@ -1,0 +1,51 @@
+<div class="barra">
+  <h2>Carteirinhas</h2>
+  <a class="btn btn-nova" routerLink="/carteirinhas/nova">+ Nova carteirinha</a>
+</div>
+
+<div class="tabela-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Matrícula</th>
+        <th>Saldo</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (c of carteirinhas(); track c.id) {
+        <tr>
+          <td>{{ c.id }}</td>
+          <td>{{ c.nome }}</td>
+          <td>{{ c.matricula }}</td>
+          <td>{{ c.saldo.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}</td>
+          <td>
+            <span class="badge" [class.ativa]="c.status === 'ATIVA'" [class.bloqueada]="c.status === 'BLOQUEADA'">
+              {{ c.status }}
+            </span>
+          </td>
+          <td>
+            <div class="acoes">
+              <button class="btn btn-debitar" (click)="debitar(c)">Debitar</button>
+              <button class="btn btn-recarregar" (click)="recarregar(c)">Recarregar</button>
+              @if (c.status === 'ATIVA') {
+                <button class="btn btn-bloquear" (click)="bloquear(c)">Bloquear</button>
+              } @else {
+                <button class="btn btn-desbloquear" (click)="desbloquear(c)">Desbloquear</button>
+              }
+              <a class="btn btn-editar" [routerLink]="['/carteirinhas', c.id, 'editar']">Editar</a>
+              <button class="btn btn-excluir" (click)="excluir(c)">Excluir</button>
+            </div>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6">Nenhuma carteirinha cadastrada.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

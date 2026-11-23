@@ -1,0 +1,26 @@
+.topo {
+  text-align: center;
+  padding: 32px 16px 16px;
+}
+
+.topo h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 48px;
+  margin: 0;
+  color: #ffffff;
+}
+
+.topo p {
+  margin: 4px 0 0;
+  color: #ffffff;
+  
+}
+
+.caixa {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  background: rgb(255, 255, 255);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}

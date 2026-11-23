@@ -1,0 +1,50 @@
+<h2>{{ id ? 'Editar carteirinha' : 'Nova carteirinha' }}</h2>
+@if (mensagem(); as m) {
+  <p [class]="m.tipo">{{ m.texto }}</p>
+}
+
+<form [formGroup]="form" (ngSubmit)="salvar()">
+  <div>
+    <label for="nome">Nome</label>
+    <input id="nome" type="text" formControlName="nome" />
+    @if (form.controls.nome.touched && form.controls.nome.errors) {
+      <small class="erro">
+        @if (form.controls.nome.hasError('required')) {
+          O nome é obrigatório.
+        } @else {
+          O nome precisa ter pelo menos 3 letras.
+        }
+      </small>
+    }
+  </div>
+
+  <div>
+    <label for="matricula">Matrícula</label>
+    <input id="matricula" type="text" formControlName="matricula" />
+    @if (form.controls.matricula.touched && form.controls.matricula.errors) {
+      <small class="erro">A matrícula é obrigatória.</small>
+    }
+  </div>
+
+  <div>
+    <label for="saldo">Saldo</label>
+    <input id="saldo" type="number" step="0.01" formControlName="saldo" />
+    @if (form.controls.saldo.touched && form.controls.saldo.errors) {
+      <small class="erro">Informe um saldo válido (zero ou maior).</small>
+    }
+  </div>
+
+        <div>
+    <label for="status">Status</label>
+    <select id="status" formControlName="status">
+      <option value="ATIVA">Ativa</option>
+      <option value="BLOQUEADA">Bloqueada</option>
+    </select>
+    
+  </div>
+
+    <div class="botoes">
+    <button type="submit" class="btn btn-salvar">Salvar</button>
+    <a class="btn btn-voltar" routerLink="/carteirinhas">Voltar</a>
+  </div>
+</form>

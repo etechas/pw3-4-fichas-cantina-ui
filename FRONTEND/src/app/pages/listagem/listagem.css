@@ -1,0 +1,59 @@
+.barra {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.barra h2 {
+  margin: 0;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.tabela-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #fff7ed;
+  color: #9a3412;
+  text-align: left;
+  padding: 12px;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+tr:hover td {
+  background: #fffbeb;
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.badge.ativa {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge.bloqueada {
+  background: #fee2e2;
+  color: #991b1b;
+}
